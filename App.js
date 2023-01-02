@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { Forecast } from './components/forecast/forecast';
+import { Logo } from './components/logo/logo';
+import { ModalView } from './components/modal/modalView';
+import store from './redux/store & selectors/store';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Provider store={store}>
+          <ScrollView style={styles.app}>
+            <Logo />
+            <Forecast />
+            <ModalView />
+          </ScrollView>
+        </Provider>
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+ app: {
+  paddingHorizontal: 40,
+  paddingVertical: 100,
+  backgroundColor: '#F7FAFC'
+ }
 });
