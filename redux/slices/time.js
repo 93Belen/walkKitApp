@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const options = {
-    name: 'location',
-    initialState: '',
+    name: 'time',
+    initialState: {},
     reducers: {
         changeState: (state, action) => {
             state = action.payload
@@ -13,6 +12,6 @@ const options = {
 }
 
 
-const locationSlice = createSlice(options);
-export const { changeState } = locationSlice.actions;
-export default locationSlice.reducer;
+const timeSlice = createSlice(options);
+export const { changeState } = timeSlice.actions;
+export default timeSlice.reducer;

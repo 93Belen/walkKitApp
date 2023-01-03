@@ -1,22 +1,26 @@
-import { Button, Modal, StyleSheet, TextInput, View } from "react-native"
+import { Button, Image, Modal, StyleSheet, TextInput, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
-import { getCoordinates } from "../../APIs/getCoordinates"
 import { selectLocation, selectViewModal } from "../../redux/store & selectors/selectors"
-import { Logo } from "../logo/logo"
+import { Logo } from "../logo/logo";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const ModalView = () => {
     const dispatch = useDispatch();
     const view = useSelector(selectViewModal);
     const location = useSelector(selectLocation);
+
     const closeModal = () => {
         dispatch({type:'viewModal/changeState', payload: false})
     }
     const getInput = (text) => {
         dispatch({type:'location/changeState', payload: text})
+        AsyncStorage.setItem('@location', text)
     }
-    const getForecast = () => {
-        getCoordinates(location)
+    const onPress = () => {
+        dispatch({type:'viewModal/changeState', payload: false})        
     }
+
+
 
     return      <Modal
                 visible={view}
@@ -30,9 +34,10 @@ export const ModalView = () => {
                         </View>
                         <TextInput onChangeText={getInput} style={styles.search} />
                         <View style={styles.searchButton}>
-                        <Button onPress={getForecast} title="Search" />
+                        <Button onPress={onPress} title="Search" />
                         </View>
                     </View>
+                    <Image style={styles.dogPic} source={require('../../images/dogPic.png')} />
                     </View>
                 </Modal>
 }
@@ -62,5 +67,11 @@ const styles = StyleSheet.create({
         paddingVertical: 100,
         backgroundColor: '#F7FAFC',
         height:'100%'
+    },
+    dogPic: {
+        margin: 50,
+        alignSelf: 'center',
+        width: 250,
+        height: 280
     }
 })

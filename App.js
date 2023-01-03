@@ -4,8 +4,10 @@ import { Forecast } from './components/forecast/forecast';
 import { Logo } from './components/logo/logo';
 import { ModalView } from './components/modal/modalView';
 import store from './redux/store & selectors/store';
+import { getForecast } from './APIs/getForecast';
 
 export default function App() {
+
   return <Provider store={store}>
           <ScrollView style={styles.app}>
             <Logo />

@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const options = {
-    name: 'location',
-    initialState: '',
+    name: 'forecast',
+    initialState: [],
     reducers: {
         changeState: (state, action) => {
             state = action.payload
@@ -13,6 +13,6 @@ const options = {
 }
 
 
-const locationSlice = createSlice(options);
-export const { changeState } = locationSlice.actions;
-export default locationSlice.reducer;
+const forecastSlice = createSlice(options);
+export const { changeState } = forecastSlice.actions;
+export default forecastSlice.reducer;
